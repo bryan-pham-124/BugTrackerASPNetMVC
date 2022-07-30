@@ -1,0 +1,45 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+.table-headers {
+  font-size: 17px;
+}
+
+tbody td {
+    font-size: 12px;
+}
+
+
+.table {
+  border: 1px solid #008cba;
+}
+
+.table-title h2{
+  font-size: 50px;
+}
+
+.table-title {
+  margin-bottom: 30px;  
+}
+
+.table-section{
+  width: 60vw;
+}
+
+ 
