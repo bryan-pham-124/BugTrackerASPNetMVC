@@ -15,6 +15,14 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\bryan\Documents\web dev\c# web dev\BugTrackerMVC\BugTrackerMVC
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Comments/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Comments/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tbWVudHNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
@@ -53,6 +61,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Tickets/Delete.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0c1xEZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Tickets/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVGlja2V0c1xEZXRhaWxzLmNzaHRtbA==
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/bryan/Documents/web dev/c\# web dev/BugTrackerMVC/BugTrackerMVC/Views/Tickets/Edit.cshtml]

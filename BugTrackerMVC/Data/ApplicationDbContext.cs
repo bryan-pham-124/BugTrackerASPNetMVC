@@ -17,6 +17,8 @@ namespace BugTrackerMVC.Data
         public DbSet<Tickets> Tickets { get; set; }
         
 
+        public DbSet<Comments> Comments { get; set; }
+
 
     }
 }

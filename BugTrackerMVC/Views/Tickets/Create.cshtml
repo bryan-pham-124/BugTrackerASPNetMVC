@@ -9,8 +9,10 @@
              </h2>
              <hr />
          </div>
+
          <input  id="project_id" name="id" asp-for="ProjectId" disabled />
          <div asp-validation-summary="All"></div>
+
          <div class="mb-3">
              <label asp-for="TicketTitle"> </label>
              <input asp-for="TicketTitle" value="" class="form-control" />  
@@ -18,7 +20,7 @@
          </div>
           <div class="mb-3">
              <label asp-for="ProjectName"> </label>
-             <input asp-for="ProjectName" value="" class="form-control"  />  
+             <input asp-for="ProjectName" value="" class="form-control" />  
              <span asp-validation-for="ProjectName" class="text-danger"></span>
          </div>
          <div class="mb-3">
@@ -41,7 +43,6 @@
              <input asp-for="Type" value="" class="form-control" />  
              <span asp-validation-for="Type" class="text-danger"></span>
          </div>
-       
         
          <button type="submit"
              asp-action="Create"

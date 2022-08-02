@@ -38,6 +38,25 @@ namespace BugTrackerMVC.Controllers
 
 
 
+        public IActionResult Details(int ticketId)
+        {
+
+
+
+            IEnumerable<Tickets> filteredTickets = _db.Tickets.Where(ticket => ticket.Id == ticketId).ToList();
+            IEnumerable<Comments> filteredComments = _db.Comments.Where(comment => comment.TicketId == ticketId).ToList();
+
+            MultipleModels combinedModel = new MultipleModels();
+
+            combinedModel.Comments = filteredComments;
+            combinedModel.Tickets = filteredTickets;
+
+            return View(combinedModel);
+
+        }
+
+
+
         //GET
         public IActionResult Create(int projectId)
         {
@@ -56,7 +75,6 @@ namespace BugTrackerMVC.Controllers
             return View(defaultTicket);
 
             
-
         }
        
 
