@@ -4,7 +4,30 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>This is the tickets controllers</h1>
+
+@foreach (var obj in  Model.Projects) {
+
+    var IstItem = Model.Projects.First();
+    // do something with each item
+    if (obj == (IstItem)) {
+
+        <div class="table-title row pt-4  d-flex align-items-center">
+
+            <div class="col-6">
+                <h2 class="text-primary">Tickets for @obj.ProjectName</h2>
+            </div>
+
+            <div class="col-6 text-end">
+                    
+                <a asp-controller="Tickets" asp-action="Create" asp-route-projectId = "@obj.Id" class="btn btn-primary">
+                        <i class="bi bi-plus-circle"></i> &nbsp; Create New Ticket
+                </a>
+            </div>
+        </div>
+    }
+    break;
+
+}
 
 
 
@@ -36,11 +59,11 @@
                             <a asp-controller="Tickets" asp-action="Create"  asp-route-projectId = "@obj.ProjectId" class="btn btn-primary mx-2"> 
                                 <i class="bi bi-plus-circle"></i> &nbsp; New Ticket
                             </a>
-                            <a asp-controller="Tickets" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2"> 
+                            <a asp-controller="Tickets" asp-action="Edit" asp-route-ticketId="@obj.Id" class="btn btn-primary mx-2"> 
                                 <i class="bi bi-pencil-square"></i> 
-                               Edit
+                               Edit @obj.Id
                             </a>
-                             <a asp-controller="Tickets" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-danger mx-2"> 
+                             <a asp-controller="Tickets" asp-action="Delete" asp-route-ticketId="@obj.Id"   class="btn btn-danger mx-2"> 
                                 <i class="bi bi-trash-fill"></i>
                                Delete
                             </a>
@@ -53,7 +76,7 @@
 
 
 
-
+    <h1>Project Info</h1>
     <table class="projects-table table table-bordered table-striped" >
         <thead class="table-headers">
             <tr>

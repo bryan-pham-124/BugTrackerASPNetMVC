@@ -1,56 +1,60 @@
 ﻿@model Tickets
 
 
-<form method="post">
+<form method="post"  >
+    
      <div class="border p-3 mt-4">
          <div class= row pb-2">
              <h2 class="text-primary">
-                 Create Category
+                 Edit Ticket
              </h2>
              <hr />
          </div>
-         <input  id="project_id" name="id" asp-for="ProjectId" disabled />
+          
+         <input id="ticket_id" name="id" asp-for="Id" disabled hidden />
+
          <div asp-validation-summary="All"></div>
          <div class="mb-3">
              <label asp-for="TicketTitle"> </label>
-             <input asp-for="TicketTitle" value="" class="form-control" />  
+             <input asp-for="TicketTitle" class="form-control"  />  
              <span asp-validation-for="TicketTitle" class="text-danger"></span>
          </div>
           <div class="mb-3">
              <label asp-for="ProjectName"> </label>
-             <input asp-for="ProjectName" value="" class="form-control"  />  
+             <input asp-for="ProjectName" class="form-control"  />  
              <span asp-validation-for="ProjectName" class="text-danger"></span>
          </div>
          <div class="mb-3">
              <label asp-for="Description"> </label>
-             <input asp-for="Description" value="" class="form-control" />  
+             <input asp-for="Description" class="form-control" />  
              <span asp-validation-for="Description" class="text-danger"></span>
          </div>
          <div class="mb-3">
              <label asp-for="Status"> </label>
-             <input asp-for="Status"  value="" class="form-control" />  
+             <input asp-for="Status"   class="form-control" />  
              <span asp-validation-for="Status" class="text-danger"></span>
          </div>
           <div class="mb-3">
              <label asp-for="Priority"> </label>
-             <input asp-for="Priority" value=""  class="form-control" />  
+             <input asp-for="Priority" class="form-control" />  
              <span asp-validation-for="Priority" class="text-danger"></span>
          </div>
          <div class="mb-3">
              <label asp-for="Type"> </label>
-             <input asp-for="Type" value="" class="form-control" />  
+             <input asp-for="Type"  class="form-control"/>  
              <span asp-validation-for="Type" class="text-danger"></span>
          </div>
        
         
          <button type="submit"
-             asp-action="Create"
-             asp-route-projectId="@Model.ProjectId"  
+             asp-route-projectId="@Model.ProjectId" 
+             asp-route-ticketId="@Model.Id" 
+             asp-action="Edit"
              class="btn btn-primary" 
-             style="width:150px">Create
+             style="width:150px">Edit
          </button>
 
-          <a asp-controller="Tickets" asp-action="Index"  asp-route-id="@Model.ProjectId" class="btn btn-secondary" style="width:150px">
+          <a asp-controller="Tickets" asp-action="Index" asp-route-id="@Model.ProjectId" class="btn btn-secondary" style="width:150px">
              Back to List
          </a>
 

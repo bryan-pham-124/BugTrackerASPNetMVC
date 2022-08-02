@@ -24,7 +24,6 @@ namespace BugTrackerMVC.Controllers
         {
 
 
-          
             IEnumerable<Tickets> filteredTickets = _db.Tickets.Where(ticket => ticket.ProjectId == id).ToList();
             IEnumerable<Projects> filteredProjects = _db.Projects.Where(project => project.Id == id).ToList();
 
@@ -40,29 +39,24 @@ namespace BugTrackerMVC.Controllers
 
 
         //GET
-        public IActionResult IndexProjectName(string projectName)
+        public IActionResult Create(int projectId)
         {
 
-            IEnumerable<Tickets> filteredTickets = _db.Tickets.Where(ticket => ticket.ProjectName == projectName).ToList();
-            IEnumerable<Projects> filteredProjects = _db.Projects.Where(project => project.ProjectName == projectName).ToList();
 
-            MultipleModels combinedModel = new MultipleModels();
+            IEnumerable<Tickets> filteredProjects = _db.Tickets.Where(ticket => ticket.ProjectId == projectId).ToList();
 
-            combinedModel.Projects = filteredProjects;
-            combinedModel.Tickets = filteredTickets;
+            if(filteredProjects.Any())
+            {
+                return View(filteredProjects.First());
+            }
 
-            return View(combinedModel);
-            //return View(ticketList);
-        }
+            Tickets defaultTicket = new Tickets();
+            defaultTicket.ProjectId = projectId;
+           
+            return View(defaultTicket);
 
+            
 
-        //GET
-
-   
-        public IActionResult Create(int? projectId)
-        {
-
-            return View(_db.Tickets.Where(ticket => ticket.ProjectId == projectId).First());
         }
        
 
@@ -89,6 +83,94 @@ namespace BugTrackerMVC.Controllers
         }
 
 
+
+        //GET
+        public IActionResult Edit(int? ticketId)
+        {
+            if (ticketId == null || ticketId == 0)
+            {
+                return NotFound();
+            }
+
+            var ticketFromDb = _db.Tickets.Find(ticketId);
+
+            if (ticketFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(ticketFromDb);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Edit(Tickets obj, int? projectId, int ticketId)
+        {
+
+            obj.Id = ticketId;
+
+            if (ModelState.IsValid)
+            {
+                _db.Tickets.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Category edited successfully";
+                return RedirectToAction("Index", new { id = projectId });
+            }
+
+            return View(obj);
+        }
+
+
+
+        //DELETE
+        //GET
+        public IActionResult Delete(int? ticketId)
+        {
+            if (ticketId == null || ticketId == 0)
+            {
+                return NotFound();
+            }
+
+            //var ticketFromDb = _db.Tickets.Where(ticket => ticket.Id == ticketId).First();
+
+            var ticketFromDb = _db.Tickets.Find(ticketId);
+
+
+            if (ticketFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(ticketFromDb);
+        }
+
+
+
+        //POST
+        [HttpPost, ActionName("Delete")]
+       
+        [ValidateAntiForgeryToken]
+
+        public IActionResult DeleteTicket(int? projectId, int? ticketId)
+        {
+
+
+            var obj = _db.Tickets.Find(ticketId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Tickets.Remove(obj);
+            _db.SaveChanges();
+            return RedirectToAction("Index", new { id = projectId });
+
+
+
+        }
 
 
     }
