@@ -21,8 +21,6 @@ namespace BugTrackerMVC.Models
         [Required]
         public string Description { get; set; }
 
-
-
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
 
 

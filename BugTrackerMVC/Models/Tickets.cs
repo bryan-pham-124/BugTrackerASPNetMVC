@@ -13,9 +13,7 @@ namespace BugTrackerMVC.Models
 
         public int ProjectId { get; set; }
 
-
-        [Required]
-        public string ProjectName { get; set; }
+ 
 
         [Required]
 

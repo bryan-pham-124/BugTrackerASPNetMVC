@@ -75,5 +75,90 @@ namespace BugTrackerMVC.Controllers
 
 
 
+
+        //GET
+        public IActionResult Edit(int?  commentId)
+        {
+            if (commentId == null || commentId == 0)
+            {
+                return NotFound();
+            }
+
+            var commentFromDb = _db.Comments.Find(commentId);
+
+            if (commentFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(commentFromDb);
+        }
+
+
+        //POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult Edit(Comments obj, int commentId, int ticketId)
+        {
+
+            obj.Id = commentId;
+
+            if (ModelState.IsValid)
+            {
+                _db.Comments.Update(obj);
+                _db.SaveChanges();
+                TempData["success"] = "Category edited successfully";
+                return RedirectToAction("Index", new { id = ticketId });
+            }
+
+            return View(obj);
+        }
+
+
+
+        //GET
+        public IActionResult Delete(int? commentId)
+        {
+            if (commentId == null || commentId == 0)
+            {
+                return NotFound();
+            }
+
+            var commentsFromDb = _db.Comments.Find(commentId);
+
+            if (commentsFromDb == null)
+            {
+                return NotFound();
+            }
+
+            return View(commentsFromDb);
+        }
+
+        //POST
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+
+        public IActionResult DeleteComment(int? commentId, int? ticketId)
+        {
+
+
+            var obj = _db.Comments.Find(commentId);
+            if (obj == null)
+            {
+                return NotFound();
+            }
+
+            _db.Comments.Remove(obj);
+            _db.SaveChanges();
+            TempData["success"] = "Category deleted successfully";
+            return RedirectToAction("Index", new {id = ticketId});
+
+        }
+
+
+
+
+
     }
 }

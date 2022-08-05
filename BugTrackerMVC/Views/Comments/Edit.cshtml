@@ -1,0 +1,51 @@
+﻿@model Comments
+
+
+<form method="post"  >
+    
+     <div class="border p-3 mt-4">
+         <div class= row pb-2">
+             <h2 class="text-primary">
+                 Edit Ticket
+             </h2>
+             <hr />
+         </div>
+          
+         <input id="ticket_id" name="id" asp-for="Id" disabled hidden />
+
+         <div asp-validation-summary="All"></div>
+         <div class="mb-3">
+             <label asp-for="User"> </label>
+             <input asp-for="User" class="form-control"  />  
+             <span asp-validation-for="User" class="text-danger"></span>
+         </div>
+
+         <div class="mb-3">
+             <label asp-for="Description"> </label>
+             <input asp-for="Description" class="form-control" />  
+             <span asp-validation-for="Description" class="text-danger"></span>
+         </div>
+      
+        
+         <button type="submit"
+             asp-route-commentId="@Model.Id" 
+             asp-route-ticketId="@Model.TicketId" 
+             asp-action="Edit"
+             class="btn btn-primary" 
+             style="width:150px">Edit
+         </button>
+
+          <a asp-controller="Tickets" asp-action="Index" asp-route-id="@Model.TicketId" class="btn btn-secondary" style="width:150px">
+             Back to List
+         </a>
+
+     </div>
+ </form>
+
+
+         
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
