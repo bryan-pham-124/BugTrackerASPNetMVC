@@ -27,6 +27,8 @@ namespace BugTrackerMVC.Models
 
         public DateTime CreateDateTime { get; set; } = DateTime.Now;
 
+        public int UnsolvedTicketCount { get; set; }
+
 
     }
 }

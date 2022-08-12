@@ -1,6 +1,5 @@
 ﻿
-
-@model IEnumerable<Projects>
+@model MultipleModels
 
 @{
     ViewData["Title"] = "Index";
@@ -10,10 +9,7 @@
 
 <div class="container p-3 table-section">
 
-    @if(TempData["success"] != null)
-    {
-        <h2>@TempData["success"]</h2>
-    }  
+
     <div class="table-title row pt-4  d-flex align-items-center">
         <div class="col-6">
             <h2 class="text-primary">Projects</h2>
@@ -26,6 +22,8 @@
         </div>
     </div>
 
+     
+
     <table class="projects-table table table-bordered table-striped" >
         <thead class="table-headers">
             <tr>
@@ -37,7 +35,8 @@
             </tr>
         </thead>
         <tbody>
-            @foreach(var obj in Model)
+
+            @foreach(var obj in Model.Projects)
             {
                 <tr>
                     <td width="20%">@obj.ProjectName</td>
@@ -66,3 +65,9 @@
             }
         </tbody>
     </table>
+
+
+
+    <h1>Unfinished Tickets: @Model.UnFinishedTickets</h1>
+    <h1>Finished Tickets: @Model.FinishedTickets</h1>
+    <h1>Pending Tickets:  @Model.PendingTickets</h1>

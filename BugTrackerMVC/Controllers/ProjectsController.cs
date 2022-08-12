@@ -19,8 +19,28 @@ namespace BugTrackerMVC.Controllers
         //Load a list of projects into index view
         public IActionResult Index()
         {
-            IEnumerable<Projects> projectList = _db.Projects;
-            return View(projectList);
+
+
+            IEnumerable<Tickets> totalTickets = _db.Tickets.ToList();
+            IEnumerable<Projects> totalProjects = _db.Projects.ToList();
+
+            int unfinishedTickets = _db.Tickets.Where(ticket => ticket.Status == "Unfinished").Count();
+            int finishedTickets = _db.Tickets.Where(ticket => ticket.Status == "Finished").Count();
+            int pendingTickets = _db.Tickets.Where(ticket => ticket.Status == "Pending").Count();
+
+
+            MultipleModels combinedModel = new MultipleModels();
+
+            combinedModel.Projects = totalProjects;
+            combinedModel.Tickets = totalTickets;
+
+            combinedModel.UnFinishedTickets = unfinishedTickets;
+            combinedModel.FinishedTickets = finishedTickets;
+            combinedModel.PendingTickets = pendingTickets;
+
+
+            return View(combinedModel);
+
         }
 
 
