@@ -145,7 +145,16 @@ namespace BugTrackerMVC.Controllers
 
             _db.Projects.Remove(obj);
             _db.SaveChanges();
-            TempData["success"] = "Category deleted successfully";
+            //TempData["success"] = "Category deleted successfully";
+
+            var objTickets = _db.Tickets.Where(ticket => ticket.ProjectId == id).ToList();
+
+            foreach(var ticket in objTickets)
+            {
+                _db.Tickets.Remove(ticket);
+                _db.SaveChanges();
+            }
+
             return RedirectToAction("Index");
 
         }

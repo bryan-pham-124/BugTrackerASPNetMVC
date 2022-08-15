@@ -6,6 +6,7 @@
 }
 
 
+@*
 
 <div class="container p-3 table-section">
 
@@ -71,3 +72,81 @@
     <h1>Unfinished Tickets: @Model.UnFinishedTickets</h1>
     <h1>Finished Tickets: @Model.FinishedTickets</h1>
     <h1>Pending Tickets:  @Model.PendingTickets</h1>
+</div>
+
+
+*@
+
+
+<div class="container table-container mt-5">
+    <div class="table-title row p-4 bg-primary  d-flex align-items-center ">
+        <div class="col-6">
+            <h3 class="text-white font-weight-bold">Projects</h3>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Projects" asp-action="Create" class="btn btn-light">
+                <i class="bi bi-plus-circle"></i> &nbsp; Create New Project 
+            </a>
+        </div>
+    </div>
+
+    <div class="table-header">
+        <div class="row  px-4">
+            <div class="col-3">Name</div>
+            <div class="col-3">Description</div>
+            <div class="col-3">Team Members</div>
+            <div class="col-3">Actions</div>
+        </div>
+    </div>
+
+    <div class="table-rows">
+           @foreach(var project in Model.Projects)
+            {
+                <div class="row my-3 px-4  d-flex align-items-center ">
+                    <div class="col-3">@project.ProjectName</div>
+                    <div class="col-3"> @project.Description  </div>
+                    <div class="col-3"> @project.TeamMembers </div>
+                    <div class="col-3" >
+                        <div class="w-75 btn-group" role="group">
+                             <a asp-controller="Tickets" asp-action="Index" asp-route-id="@project.Id" class="btn btn-success mx-2"> 
+                                <i class="bi bi-question"></i>
+
+                                Details
+                            </a>
+                            <a asp-controller="Projects" asp-action="Edit" asp-route-id="@project.Id" class="btn btn-primary mx-2"> 
+                                <i class="bi bi-pencil-square"></i> 
+                                Edit
+                            </a>
+                                <a asp-controller="Projects" asp-action="Delete" asp-route-id="@project.Id" class="btn btn-danger mx-2"> 
+                                <i class="bi bi-trash-fill"></i>
+                                Delete
+                            </a>
+                           
+                          </div>
+                    </div>
+                </div>
+            }
+    </div>
+</div>
+
+
+<div class="container project-stats-container my-5">
+     <h3 class="text-primary font-weight-bold text-center mb-4 ">Project stats</h3>
+     <div class="row stats-grid justify-content-center">
+           <div class="col-2 stat-grid text-center text-white bg-success">
+                <h5>Finished Tasks</h5>
+                <p> @Model.FinishedTickets</p>
+           </div>
+           <div class="col-2 stat-grid text-center text-white bg-warning">
+               <h5>Pending Tasks</h5>
+               <p> @Model.PendingTickets</p>
+           </div>
+           <div class="col-2 stat-grid text-center text-white bg-danger">
+               <h5>Unfinished Tasks</h5>
+               <p> @Model.UnFinishedTickets</p>
+           </div>
+     </div>
+</div>
+
+
+
